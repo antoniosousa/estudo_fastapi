@@ -1,3 +1,4 @@
 .venv/*
 .tool-versions
 *__pycache__*
+.coverage
