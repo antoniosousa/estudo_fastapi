@@ -13,20 +13,16 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install Poetry
-        run: |
-          curl -sSL https://install.python-poetry.org | sh
-          echo "POETRY_VIRTUALENVS_PATH=$HOME/.poetry/env" >> $GITHUB_ENV
-          echo "POETRY_ACTIVE=1" >> $GITHUB_ENV
-          source $HOME/.poetry/env
+        run: curl -sSL https://install.python-poetry.org | sh
+        run: echo "POETRY_VIRTUALENVS_PATH=$HOME/.poetry/env" >> $GITHUB_ENV
+        run: echo "POETRY_ACTIVE=1" >> $GITHUB_ENV
+        run: source $HOME/.poetry/env
 
       - name: Install dependencies
-        run: |
-          poetry install
+        run: poetry install
 
       - name: Run lint
-        run: |
-          poetry run task lint
+        run: poetry run task lint
 
       - name: Run tests
-        run: |
-          poetry run task test
+        run: poetry run task test
