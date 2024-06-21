@@ -1,4 +1,4 @@
-name: Tests
+name: Fast Zero CI
 
 on:
   push:
@@ -11,6 +11,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
+      - name: Install Poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | sh
+          source $HOME/.poetry/env
 
       - name: Install dependencies
         run: |
