@@ -1,28 +1,32 @@
-name: Fast Zero CI
+name: Tests
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   test:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Install Poetry
-        run: curl -sSL https://install.python-poetry.org | sh
-        run: echo "POETRY_VIRTUALENVS_PATH=$HOME/.poetry/env" >> $GITHUB_ENV
-        run: echo "POETRY_ACTIVE=1" >> $GITHUB_ENV
-        run: source $HOME/.poetry/env
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.12'  # Altere para a versão do Python que você está usando
 
-      - name: Install dependencies
-        run: poetry install
+    - name: Install Poetry
+      run: curl -sSL https://install.python-poetry.org | python3 -
 
-      - name: Run lint
-        run: poetry run task lint
+    - name: Install dependencies
+      run: poetry install
 
-      - name: Run tests
-        run: poetry run task test
+    - name: Run tests
+      run: poetry run task test
+
+    - name: Run Linter
+      run: poetry run task lint
