@@ -106,9 +106,7 @@ def test_read_user_by_id_while_id_does_not_exist_and_negative(client):
     assert (
         response1.status_code == HTTPStatus.NOT_FOUND == response2.status_code
     )
-    assert (
-        response2.json() == {'detail': 'User not found'} == response1.json()
-    )
+    assert response2.json() == {'detail': 'User not found'} == response1.json()
 
 
 def test_delete_user(client):
@@ -125,6 +123,4 @@ def test_user_delete_while_id_does_not_exist_and_negative(client):
     assert (
         response2.status_code == HTTPStatus.NOT_FOUND == response1.status_code
     )
-    assert (
-        response2.json() == {'detail': 'User not found'} == response1.json()
-    )
+    assert response2.json() == {'detail': 'User not found'} == response1.json()
