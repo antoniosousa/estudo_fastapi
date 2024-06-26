@@ -1,0 +1,7 @@
+[run]
+omit =
+    fast_zero/settings.py
+
+[report]
+omit =
+    fast_zero/settings.py
