@@ -30,8 +30,6 @@ def test_fields_updated_at_and_created_at(session):
 
     session.commit()
 
-    query = session.scalar(
-        select(User).where(User.id == user.id)
-    )
+    query = session.scalar(select(User).where(User.id == user.id))
 
     assert query.updated_at != query.created_at
